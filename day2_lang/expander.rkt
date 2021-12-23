@@ -31,11 +31,6 @@
                   )) 
 (provide downfun)
 
-(define val
-  (let ([val-cache (make-hash)])
-    (lambda (num)
-          (hash-ref! val-cache 0 num))))
-
 (define-macro (everything)
               #'(begin
                   (module+ main
