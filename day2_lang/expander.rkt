@@ -20,13 +20,13 @@
 (provide forwardfun)
 (define-macro (upfun VAL)
               #'(void
-                  (inc_height VAL)
+                  (decr_aim VAL)
                   (displayln (format "~a: ~a ~a" 'up VAL (* depth hor_pos)))
                   )) 
 (provide upfun)
 (define-macro (downfun VAL)
               #'(void
-                  (decr_height VAL)
+                  (inc_aim VAL)
                   (displayln (format "~a: ~a ~a" 'down VAL (* depth hor_pos)))
                   )) 
 (provide downfun)
@@ -38,9 +38,12 @@
 
 (define depth 0)
 (define hor_pos 0)
+(define aim 0)
 
-(define (inc_pos val) (set! hor_pos (+ hor_pos val)))
-(define (inc_height val) (set! depth (- depth val)))
-(define (decr_height val) (set! depth (+ depth val)))
-
-
+(define (inc_pos val)
+  (set! hor_pos (+ hor_pos val))
+  (set! depth (+ depth (* aim val))))
+(define (inc_aim val)
+  (set! aim (+ aim val)))
+(define (decr_aim val)
+  (set! aim (- aim val)))
